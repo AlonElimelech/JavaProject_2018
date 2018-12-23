@@ -1,5 +1,7 @@
 package com.jct.oshri.project_01.model.backend;
 
+import android.content.Context;
+
 import com.jct.oshri.project_01.model.entities.ride;
 
 public interface DB_manager {

@@ -1,13 +1,18 @@
 package com.jct.oshri.project_01.model.datasource;
 
+import android.content.Context;
+import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.jct.oshri.project_01.MainActivity;
 import com.jct.oshri.project_01.model.backend.DB_manager;
 import com.jct.oshri.project_01.model.entities.ride;
 
@@ -24,7 +29,7 @@ public class FireBase_DBManager implements DB_manager {
                 if (!dataSnapshot.exists()) {
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference databaseReference = database.getReference("Ride/" + key);
-                    databaseReference.setValue(aRide);
+                    Task<Void> task = databaseReference.setValue(aRide);
                 }
             }
 

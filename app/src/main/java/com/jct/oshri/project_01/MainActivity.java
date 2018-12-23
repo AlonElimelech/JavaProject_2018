@@ -33,10 +33,8 @@ public class MainActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(getApplicationContext(), "Sending..", Toast.LENGTH_SHORT);
         toast.show();
 
-
         String fullName = ((EditText) findViewById(R.id.fullName)).getText().toString();
         String PhoneNumber = ((EditText) findViewById(R.id.phone)).getText().toString();
-        ;
         String Email = ((EditText) findViewById(R.id.email)).getText().toString();
         String source = ((EditText) findViewById(R.id.curLocation)).getText().toString();
         String dest = ((EditText) findViewById(R.id.desLocation)).getText().toString();

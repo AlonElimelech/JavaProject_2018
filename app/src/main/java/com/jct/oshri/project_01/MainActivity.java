@@ -1,6 +1,8 @@
 package com.jct.oshri.project_01;
 
+import android.app.AlertDialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,15 +23,15 @@ import com.jct.oshri.project_01.model.entities.ride;
 
 public class MainActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
-
     protected void submit_click(View view) {
+        if (!isValidated()) return;
+
         Toast toast = Toast.makeText(getApplicationContext(), "Sending..", Toast.LENGTH_SHORT);
         toast.show();
 
@@ -48,12 +50,51 @@ public class MainActivity extends AppCompatActivity {
         dBase.addNewRide(ride);
     }
 
+    private boolean isValidated() {
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this).setNeutralButton("OK", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        if (((EditText) findViewById(R.id.fullName)).getText().toString().length() == 0) {
+            alert.setMessage("Full name is missing!");
+            alert.show();
+            return false;
+        }
+
+        if (((EditText) findViewById(R.id.phone)).getText().toString().length() == 0) {
+            alert.setMessage("Phone number is missing!");
+            alert.show();
+            return false;
+        }
+
+        if (((EditText) findViewById(R.id.email)).getText().toString().length() == 0) {
+            alert.setMessage("Email address is missing!");
+            alert.show();
+            return false;
+        }
+
+        if (((EditText) findViewById(R.id.curLocation)).getText().toString().length() == 0) {
+            alert.setMessage("Current location is missing!");
+            alert.show();
+            return false;
+        }
+
+        if (((EditText) findViewById(R.id.desLocation)).getText().toString().length() == 0) {
+            alert.setMessage("Destination address is missing!");
+            alert.show();
+            return false;
+        }
+
+        return true;
+    }
 
     public void choseTime(View view) {
         DialogFragment newFragment = new TimePickerFragment();
         newFragment.show(getFragmentManager(), "TimePicker");
-
     }
-
 
 }
